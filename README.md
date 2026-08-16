@@ -26,14 +26,6 @@
 
 <br />
 
-<!-- GitHub Stats & Top Languages -->
-<a href="https://github.com/manulanirwan">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=manulanirwan&show_icons=true&theme=dark&bg_color=0D1117&title_color=00FF66&text_color=C9D1D9&icon_color=00FF66&hide_border=true&count_private=true" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=manulanirwan&layout=compact&theme=dark&bg_color=0D1117&title_color=00FF66&text_color=C9D1D9&hide_border=true" />
-</a>
-
-<br />
-
 <!-- GitHub Streak Stats -->
 <a href="https://github.com/manulanirwan">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=dark&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66&border=0D1117&hide_border=true" />
