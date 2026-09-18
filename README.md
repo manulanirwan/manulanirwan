@@ -21,8 +21,13 @@
 
 <div align="center">
 
-<!-- GitHub Activity Graph -->
-![Manula's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=manulanirwan&theme=github-compact&hide_border=true&area=true&color=00FF66&line=00FF66&point=FFFFFF)
+<!-- GitHub Activity Graph (replacement host: official activity-graph.vercel.app is paused) -->
+![Manula's Activity Graph](https://gitglance-eight.vercel.app/api/activity?username=manulanirwan&days=31&theme=forest&style=neon&bg_color=0D1117&title_color=00FF66&text_color=C9D1D9&hide_border=true&title=Activity%20Graph)
+
+<br />
+
+<!-- Contribution calendar -->
+<img src="https://ghchart.rshah.org/00FF66/manulanirwan" alt="Manula's GitHub contribution chart" />
 
 <br />
 
