@@ -58,20 +58,14 @@ I learn by building, testing, researching, and publishing.
 ### GitHub stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=manulanirwan&show_icons=true&include_all_commits=true&count_private=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=00FF88&icon_color=00FF88&text_color=C9D1D9" height="165" alt="GitHub stats" />
+  <img src="./assets/stats-card.svg" height="165" alt="GitHub stats" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true" height="165" alt="GitHub streak" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=manulanirwan&layout=compact&theme=radical&hide_border=true&bg_color=0D1117&title_color=00FF88&text_color=C9D1D9" alt="Top languages" />
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=manulanirwan&theme=onestar&no-frame=true&no-bg=true&column=7&margin-w=8" alt="Trophies" />
+  <img src="./assets/languages.svg" height="165" alt="Top languages" />
 </div>
 
 <br/>
