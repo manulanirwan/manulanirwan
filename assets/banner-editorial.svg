@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420" role="img" aria-label="Manula Nirwan">
+  <rect width="1600" height="420" fill="#F4EFE6"/>
+  <rect x="0" y="0" width="16" height="420" fill="#1C1915"/>
+  <rect x="1584" y="0" width="16" height="420" fill="#1C1915"/>
+  <text x="88" y="92" font-family="Georgia, Times New Roman, serif" font-size="15" letter-spacing="7" fill="#6A6156">PORTFOLIO</text>
+  <line x1="88" y1="108" x2="250" y2="108" stroke="#1C1915" stroke-width="1"/>
+  <text x="88" y="220" font-family="Georgia, Times New Roman, serif" font-size="88" fill="#1C1915">Manula Nirwan</text>
+  <text x="88" y="278" font-family="Georgia, Times New Roman, serif" font-size="26" fill="#5C5348">Cybersecurity student in Sri Lanka. I build tools I can actually use.</text>
+  <line x1="88" y1="318" x2="640" y2="318" stroke="#C9BBA4" stroke-width="1"/>
+  <text x="88" y="360" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3.2" fill="#3F3A33">ICBT KURUNEGALA   WEB   ANDROID   AI</text>
+  <text x="1260" y="268" font-family="Georgia, Times New Roman, serif" font-size="140" fill="#1C1915" opacity="0.10">MN</text>
+</svg>
