@@ -3,46 +3,49 @@
     "manulanirwan",
     "hf-space-keeper"
   ],
+  "pin": [
+    "cyberlens",
+    "CyberLens-App",
+    "Chat-With-All-AI-Models",
+    "manula-ai-android-app",
+    "manula-social-ai-android",
+    "manula-notebook-android",
+    "hand-gesture-studio",
+    "claude-skills"
+  ],
+  "max": 12,
   "projects": [
     {
       "name": "cyberlens",
-      "what": "Domain and website exposure scanner with risk scoring and AI-assisted reports",
-      "live": ""
+      "what": "Domain and website exposure scanner with risk scoring and AI-assisted reports"
     },
     {
       "name": "CyberLens-App",
-      "what": "Android companion for defensive cybersecurity education",
-      "live": ""
+      "what": "Android companion for defensive cybersecurity education"
     },
     {
       "name": "Chat-With-All-AI-Models",
-      "what": "Multi-model AI chat interface",
-      "live": "https://manulanirwan.github.io/Chat-With-All-AI-Models/"
+      "what": "Multi-model AI chat interface"
     },
     {
       "name": "manula-ai-android-app",
-      "what": "Gemini-powered Android assistant, including older devices",
-      "live": ""
+      "what": "Gemini-powered Android assistant, including older devices"
     },
     {
       "name": "manula-social-ai-android",
-      "what": "Social content generator for major platforms",
-      "live": ""
+      "what": "Social content generator for major platforms"
     },
     {
       "name": "manula-notebook-android",
-      "what": "Source-grounded AI research notebook",
-      "live": ""
+      "what": "Source-grounded AI research notebook"
     },
     {
       "name": "hand-gesture-studio",
-      "what": "Real-time MediaPipe Hands lab in the browser",
-      "live": "https://manulanirwan.github.io/hand-gesture-studio/"
+      "what": "Real-time MediaPipe Hands lab in the browser"
     },
     {
       "name": "claude-skills",
-      "what": "Reusable skills for study, content, and development",
-      "live": ""
+      "what": "Reusable skills for study, content, and development"
     }
   ]
 }
