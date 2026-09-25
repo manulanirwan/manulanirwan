@@ -4,12 +4,13 @@
 from __future__ import annotations
 
 import datetime as dt
+import html
 import json
 import os
+import re
 import ssl
 import sys
 import urllib.error
-import urllib.parse
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
@@ -64,7 +65,7 @@ def request_json(url: str, payload: dict[str, Any] | None = None) -> Any:
         "X-GitHub-Api-Version": "2022-11-28",
     }
     if TOKEN:
-        headers["Authorization"] = f"Bearer {TOKEN}"
+        headers["Authorization"] = "Bearer " + TOKEN
     data = None
     if payload is not None:
         data = json.dumps(payload).encode("utf-8")
@@ -77,20 +78,21 @@ def request_json(url: str, payload: dict[str, Any] | None = None) -> Any:
             return json.loads(raw) if raw else {}
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"HTTP {exc.code} for {url}: {body[:400]}") from exc
+        raise RuntimeError("HTTP %s for %s: %s" % (exc.code, url, body[:400])) from exc
 
 
 def get_user() -> dict[str, Any]:
-    return request_json(f"{API}/users/{USERNAME}")
+    return request_json("%s/users/%s" % (API, USERNAME))
 
 
 def list_repos() -> list[dict[str, Any]]:
     repos: list[dict[str, Any]] = []
     page = 1
     while page <= 10:
-        url = (
-            f"{API}/users/{USERNAME}/repos"
-            f"?per_page=100&page={page}&type=owner&sort=updated"
+        url = "%s/users/%s/repos?per_page=100&page=%s&type=owner&sort=updated" % (
+            API,
+            USERNAME,
+            page,
         )
         chunk = request_json(url)
         if not chunk:
@@ -103,7 +105,7 @@ def list_repos() -> list[dict[str, Any]]:
 
 
 def repo_languages(owner: str, name: str) -> dict[str, int]:
-    return request_json(f"{API}/repos/{owner}/{name}/languages") or {}
+    return request_json("%s/repos/%s/%s/languages" % (API, owner, name)) or {}
 
 
 def graphql(query: str, variables: dict[str, Any]) -> dict[str, Any]:
@@ -118,15 +120,13 @@ def lifetime_contributions(created_at: str) -> int:
     now = dt.datetime.now(dt.timezone.utc)
     total = 0
     year = created.year
-    query = """
-    query($login: String!, $from: DateTime!, $to: DateTime!) {
-      user(login: $login) {
-        contributionsCollection(from: $from, to: $to) {
-          contributionCalendar { totalContributions }
-        }
-      }
-    }
-    """
+    query = (
+        "query($login: String!, $from: DateTime!, $to: DateTime!) {"
+        " user(login: $login) {"
+        " contributionsCollection(from: $from, to: $to) {"
+        " contributionCalendar { totalContributions }"
+        " } } }"
+    )
     while year <= now.year:
         start = dt.datetime(year, 1, 1, tzinfo=dt.timezone.utc)
         if start < created:
@@ -152,45 +152,40 @@ def lifetime_contributions(created_at: str) -> int:
     return total
 
 
-def xml_escape(text: str) -> str:
-    return (
-        text.replace("&", "&")
-        .replace("<", "<")
-        .replace(">", ">")
-        .replace('"', """)
-    )
-
-
 def build_stats_svg(public_repos: int, followers: int, following: int, contributions: int) -> str:
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="420" height="195" viewBox="0 0 420 195" role="img" aria-label="GitHub stats">
-  <rect width="420" height="195" rx="12" fill="#0D1117" stroke="#1F3A2E"/>
-  <text x="22" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#00FF88">Manula's GitHub stats</text>
-  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
-    <text x="22" y="72" fill="#8B949E">Public Repos</text>
-    <text x="250" y="72" fill="#E6EDF3">{public_repos}</text>
-    <text x="22" y="100" fill="#8B949E">Followers</text>
-    <text x="250" y="100" fill="#E6EDF3">{followers}</text>
-    <text x="22" y="128" fill="#8B949E">Following</text>
-    <text x="250" y="128" fill="#E6EDF3">{following}</text>
-    <text x="22" y="156" fill="#8B949E">Contributions</text>
-    <text x="250" y="156" fill="#E6EDF3">{contributions}</text>
-  </g>
-  <circle cx="372" cy="36" r="8" fill="#00FF88"/>
-</svg>
-"""
+    lines = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="420" height="195" viewBox="0 0 420 195" role="img" aria-label="GitHub stats">',
+        '  <rect width="420" height="195" rx="12" fill="#0D1117" stroke="#1F3A2E"/>',
+        '  <text x="22" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#00FF88">Manula GitHub stats</text>',
+        '  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">',
+        '    <text x="22" y="72" fill="#8B949E">Public Repos</text>',
+        '    <text x="250" y="72" fill="#E6EDF3">%s</text>' % public_repos,
+        '    <text x="22" y="100" fill="#8B949E">Followers</text>',
+        '    <text x="250" y="100" fill="#E6EDF3">%s</text>' % followers,
+        '    <text x="22" y="128" fill="#8B949E">Following</text>',
+        '    <text x="250" y="128" fill="#E6EDF3">%s</text>' % following,
+        '    <text x="22" y="156" fill="#8B949E">Contributions</text>',
+        '    <text x="250" y="156" fill="#E6EDF3">%s</text>' % contributions,
+        "  </g>",
+        '  <circle cx="372" cy="36" r="8" fill="#00FF88"/>',
+        "</svg>",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def build_languages_svg(langs: list[tuple[str, float]]) -> str:
-    bar_x = 22
-    bar_w = 376
+    bar_x = 22.0
+    bar_w = 376.0
     segments = []
     offset = 0.0
     for name, pct in langs:
-        width = max(2.0, bar_w * (pct / 100.0)) if pct >= 1 else max(1.5, bar_w * (pct / 100.0))
+        width = max(1.5, bar_w * (pct / 100.0))
         color = LANG_COLORS.get(name, FALLBACK_COLORS[len(segments) % len(FALLBACK_COLORS)])
         rx = ' rx="5"' if offset == 0 else ""
         segments.append(
-            f'<rect x="{bar_x + offset:.1f}" y="54" width="{width:.1f}" height="10"{rx} fill="{color}"/>'
+            '<rect x="%.1f" y="54" width="%.1f" height="10"%s fill="%s"/>'
+            % (bar_x + offset, width, rx, color)
         )
         offset += width
 
@@ -198,24 +193,28 @@ def build_languages_svg(langs: list[tuple[str, float]]) -> str:
     y = 90
     for i, (name, pct) in enumerate(langs[:4]):
         color = LANG_COLORS.get(name, FALLBACK_COLORS[i % len(FALLBACK_COLORS)])
-        label = f"{pct:.0f}%" if pct >= 1 else "<1%"
+        label = "%.0f%%" % pct if pct >= 1 else "lt 1%"
+        rows.append('    <circle cx="28" cy="%s" r="5" fill="%s"/>' % (y, color))
         rows.append(
-            f"""    <circle cx="28" cy="{y}" r="5" fill="{color}"/>
-    <text x="42" y="{y + 5}" fill="#C9D1D9">{xml_escape(name)}</text>
-    <text x="360" y="{y + 5}" fill="#8B949E">{label}</text>"""
+            '    <text x="42" y="%s" fill="#C9D1D9">%s</text>'
+            % (y + 5, html.escape(name))
         )
+        rows.append('    <text x="360" y="%s" fill="#8B949E">%s</text>' % (y + 5, label))
         y += 28
 
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="420" height="195" viewBox="0 0 420 195" role="img" aria-label="Top languages">
-  <rect width="420" height="195" rx="12" fill="#0D1117" stroke="#1F3A2E"/>
-  <text x="22" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#00FF88">Top languages</text>
-  <rect x="22" y="54" width="376" height="10" rx="5" fill="#161B22"/>
-  {''.join(segments)}
-  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
-{chr(10).join(rows)}
-  </g>
-</svg>
-"""
+    lines = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="420" height="195" viewBox="0 0 420 195" role="img" aria-label="Top languages">',
+        '  <rect width="420" height="195" rx="12" fill="#0D1117" stroke="#1F3A2E"/>',
+        '  <text x="22" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#00FF88">Top languages</text>',
+        '  <rect x="22" y="54" width="376" height="10" rx="5" fill="#161B22"/>',
+        "  " + "".join(segments),
+        '  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">',
+        "\n".join(rows),
+        "  </g>",
+        "</svg>",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def top_languages(repos: list[dict[str, Any]]) -> list[tuple[str, float]]:
@@ -254,8 +253,8 @@ def featured_table(config: dict[str, Any], repos: list[dict[str, Any]]) -> str:
         repo = by_name.get(name, {})
         what = item.get("what") or repo.get("description") or "Project"
         live = item.get("live") or repo.get("homepage") or ""
-        live_cell = f"[Demo]({live})" if live else "—"
-        url = repo.get("html_url") or f"https://github.com/{USERNAME}/{name}"
+        live_cell = "[Demo](%s)" % live if live else "-"
+        url = repo.get("html_url") or "https://github.com/%s/%s" % (USERNAME, name)
         rows.append((name, url, what, live_cell))
 
     extras = []
@@ -272,47 +271,34 @@ def featured_table(config: dict[str, Any], repos: list[dict[str, Any]]) -> str:
         name = repo["name"]
         what = repo.get("description") or "Public project"
         live = repo.get("homepage") or ""
-        live_cell = f"[Demo]({live})" if live else "—"
+        live_cell = "[Demo](%s)" % live if live else "-"
         rows.append((name, repo["html_url"], what, live_cell))
 
-    header = (
-        "| Project | What it does | Live |\n"
-        "| :--- | :--- | :---: |"
-    )
+    header = "| Project | What it does | Live |\n| :--- | :--- | :---: |"
     body = []
     for name, url, what, live_cell in rows:
         safe_what = what.replace("|", "-").replace("\n", " ").strip()
-        body.append(f"| [{name}]({url}) | {safe_what} | {live_cell} |")
+        body.append("| [%s](%s) | %s | %s |" % (name, url, safe_what, live_cell))
     return header + "\n" + "\n".join(body)
 
 
 def replace_between(text: str, start: str, end: str, inner: str) -> str:
     if start not in text or end not in text:
-        raise RuntimeError(f"Missing markers {start} / {end} in README.md")
+        raise RuntimeError("Missing markers %s / %s in README.md" % (start, end))
     before, rest = text.split(start, 1)
     _, after = rest.split(end, 1)
-    return f"{before}{start}\n{inner}\n{end}{after}"
+    return before + start + "\n" + inner + "\n" + end + after
 
 
 def patch_cache_bust(text: str, stamp: str) -> str:
-    import re
-
-    text = re.sub(r"([&?])cache_bust=\d+", rf"\1cache_bust={stamp}", text)
+    text = re.sub(r"([&?])cache_bust=\d+", r"\1cache_bust=" + stamp, text)
     if "cache_bust=" not in text:
-        text = text.replace(
-            "hide_border=true",
-            f"hide_border=true&cache_bust={stamp}",
-        )
-        text = text.replace(
-            "https://ghchart.rshah.org/00c853/manulanirwan",
-            f"https://ghchart.rshah.org/00c853/manulanirwan?{stamp}",
-        )
-    else:
-        text = re.sub(
-            r"https://ghchart\.rshah\.org/00c853/manulanirwan(?:\?\d+)?",
-            f"https://ghchart.rshah.org/00c853/manulanirwan?{stamp}",
-            text,
-        )
+        text = text.replace("hide_border=true", "hide_border=true&cache_bust=" + stamp)
+    text = re.sub(
+        r"https://ghchart\.rshah\.org/00c853/manulanirwan(?:\?\d+)?",
+        "https://ghchart.rshah.org/00c853/manulanirwan?" + stamp,
+        text,
+    )
     return text
 
 
@@ -350,10 +336,10 @@ def main() -> int:
     README.write_text(readme, encoding="utf-8")
 
     print(
-        f"Updated stats: repos={public_repos} followers={followers} "
-        f"following={following} contributions={contributions}"
+        "Updated stats: repos=%s followers=%s following=%s contributions=%s"
+        % (public_repos, followers, following, contributions)
     )
-    print("Languages:", ", ".join(f"{n} {p:.1f}%" for n, p in langs))
+    print("Languages:", ", ".join("%s %.1f%%" % (n, p) for n, p in langs))
     return 0
 
 
