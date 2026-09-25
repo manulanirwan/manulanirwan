@@ -1,0 +1,48 @@
+{
+  "exclude": [
+    "manulanirwan",
+    "hf-space-keeper"
+  ],
+  "projects": [
+    {
+      "name": "cyberlens",
+      "what": "Domain and website exposure scanner with risk scoring and AI-assisted reports",
+      "live": ""
+    },
+    {
+      "name": "CyberLens-App",
+      "what": "Android companion for defensive cybersecurity education",
+      "live": ""
+    },
+    {
+      "name": "Chat-With-All-AI-Models",
+      "what": "Multi-model AI chat interface",
+      "live": "https://manulanirwan.github.io/Chat-With-All-AI-Models/"
+    },
+    {
+      "name": "manula-ai-android-app",
+      "what": "Gemini-powered Android assistant, including older devices",
+      "live": ""
+    },
+    {
+      "name": "manula-social-ai-android",
+      "what": "Social content generator for major platforms",
+      "live": ""
+    },
+    {
+      "name": "manula-notebook-android",
+      "what": "Source-grounded AI research notebook",
+      "live": ""
+    },
+    {
+      "name": "hand-gesture-studio",
+      "what": "Real-time MediaPipe Hands lab in the browser",
+      "live": "https://manulanirwan.github.io/hand-gesture-studio/"
+    },
+    {
+      "name": "claude-skills",
+      "what": "Reusable skills for study, content, and development",
+      "live": ""
+    }
+  ]
+}

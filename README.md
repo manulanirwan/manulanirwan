@@ -42,6 +42,7 @@ I learn by building, testing, researching, and publishing.
 
 ### Featured projects
 
+<!-- FEATURED-PROJECTS:START -->
 | Project | What it does | Live |
 | :--- | :--- | :---: |
 | [cyberlens](https://github.com/manulanirwan/cyberlens) | Domain and website exposure scanner with risk scoring and AI-assisted reports | — |
@@ -52,6 +53,7 @@ I learn by building, testing, researching, and publishing.
 | [manula-notebook-android](https://github.com/manulanirwan/manula-notebook-android) | Source-grounded AI research notebook | — |
 | [hand-gesture-studio](https://github.com/manulanirwan/hand-gesture-studio) | Real-time MediaPipe Hands lab in the browser | [Demo](https://manulanirwan.github.io/hand-gesture-studio/) |
 | [claude-skills](https://github.com/manulanirwan/claude-skills) | Reusable skills for study, content, and development | — |
+<!-- FEATURED-PROJECTS:END -->
 
 ---
 
@@ -59,7 +61,7 @@ I learn by building, testing, researching, and publishing.
 
 <div align="center">
   <img src="./assets/stats-card.svg" height="165" alt="GitHub stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true" height="165" alt="GitHub streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true&cache_bust=20260925" height="165" alt="GitHub streak" />
 </div>
 
 <br/>
@@ -71,7 +73,7 @@ I learn by building, testing, researching, and publishing.
 <br/>
 
 <div align="center">
-  <img src="https://ghchart.rshah.org/00c853/manulanirwan" alt="Contribution chart" />
+  <img src="https://ghchart.rshah.org/00c853/manulanirwan?20260925" alt="Contribution chart" />
 </div>
 
 ---
