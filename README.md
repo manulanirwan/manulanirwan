@@ -61,7 +61,7 @@ I learn by building, testing, researching, and publishing.
 
 <div align="center">
   <img src="./assets/stats-card.svg" height="165" alt="GitHub stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true&cache_bust=20260925" height="165" alt="GitHub streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true&cache_bust=20260926" height="165" alt="GitHub streak" />
 </div>
 
 <br/>
@@ -73,7 +73,7 @@ I learn by building, testing, researching, and publishing.
 <br/>
 
 <div align="center">
-  <img src="https://ghchart.rshah.org/00c853/manulanirwan?20260925" alt="Contribution chart" />
+  <img src="https://ghchart.rshah.org/00c853/manulanirwan?20260926" alt="Contribution chart" />
 </div>
 
 ---
