@@ -53,6 +53,7 @@ I learn by building, testing, researching, and publishing.
 | [manula-notebook-android](https://github.com/manulanirwan/manula-notebook-android) | Source-grounded AI research notebook | - |
 | [hand-gesture-studio](https://github.com/manulanirwan/hand-gesture-studio) | Real-time MediaPipe Hands lab in the browser | [Demo](https://manulanirwan.github.io/hand-gesture-studio/) |
 | [claude-skills](https://github.com/manulanirwan/claude-skills) | Reusable skills for study, content, and development | - |
+| [knightforge](https://github.com/manulanirwan/knightforge) | Public project | - |
 | [AI-Skills](https://github.com/manulanirwan/AI-Skills) | custom Claude skills for cybersecurity study, tech/automotive content creation, and dev workflows — covering YouTube/SEO, CV building, email drafting, coding, cybersecurity mentoring, and more. | - |
 | [Cybersecurity-Log-Analyzer](https://github.com/manulanirwan/Cybersecurity-Log-Analyzer) | Public project | [Demo](https://manulanirwan.github.io/Cybersecurity-Log-Analyzer/) |
 | [AIScam-Message-Analyzer](https://github.com/manulanirwan/AIScam-Message-Analyzer) | Paste a WhatsApp, SMS, or email message and score scam risk. | [Demo](https://manulanirwan.github.io/AIScam-Message-Analyzer/) |
@@ -65,7 +66,7 @@ I learn by building, testing, researching, and publishing.
 
 <div align="center">
   <img src="./assets/stats-card.svg" height="165" alt="GitHub stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true&cache_bust=20261024" height="165" alt="GitHub streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=manulanirwan&theme=radical&background=0D1117&ring=00FF88&fire=00FF88&currStreakLabel=00FF88&sideLabels=C9D1D9&dates=8B949E&border=0D1117&hide_border=true&cache_bust=20261025" height="165" alt="GitHub streak" />
 </div>
 
 <br/>
@@ -77,7 +78,7 @@ I learn by building, testing, researching, and publishing.
 <br/>
 
 <div align="center">
-  <img src="https://ghchart.rshah.org/00c853/manulanirwan?20261024" alt="Contribution chart" />
+  <img src="https://ghchart.rshah.org/00c853/manulanirwan?20261025" alt="Contribution chart" />
 </div>
 
 ---

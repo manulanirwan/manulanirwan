@@ -2,11 +2,11 @@
   <rect width="420" height="195" rx="12" fill="#0D1117" stroke="#1F3A2E"/>
   <text x="22" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#00FF88">Top languages</text>
   <rect x="22" y="54" width="376" height="10" rx="5" fill="#161B22"/>
-  <rect x="22.0" y="54" width="329.3" height="10" rx="5" fill="#7F52FF"/><rect x="351.3" y="54" width="21.2" height="10" fill="#F7DF1E"/><rect x="372.5" y="54" width="13.8" height="10" fill="#E34F26"/><rect x="386.4" y="54" width="7.0" height="10" fill="#3776AB"/>
+  <rect x="22.0" y="54" width="326.6" height="10" rx="5" fill="#7F52FF"/><rect x="348.6" y="54" width="21.1" height="10" fill="#F7DF1E"/><rect x="369.6" y="54" width="13.8" height="10" fill="#E34F26"/><rect x="383.5" y="54" width="7.0" height="10" fill="#3776AB"/>
   <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
     <circle cx="28" cy="90" r="5" fill="#7F52FF"/>
     <text x="42" y="95" fill="#C9D1D9">Kotlin</text>
-    <text x="360" y="95" fill="#8B949E">88%</text>
+    <text x="360" y="95" fill="#8B949E">87%</text>
     <circle cx="28" cy="118" r="5" fill="#F7DF1E"/>
     <text x="42" y="123" fill="#C9D1D9">JavaScript</text>
     <text x="360" y="123" fill="#8B949E">6%</text>
